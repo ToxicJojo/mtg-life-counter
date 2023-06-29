@@ -1,3 +1,3 @@
-export function html(strings: TemplateStringsArray, ...values: any[]) {
+export function html(strings: TemplateStringsArray, ...values: unknown[]) {
   return String.raw({ raw: strings }, ...values);
 }
