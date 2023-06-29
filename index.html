@@ -7,11 +7,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>MTG - Life Counter</title>
   <link rel="stylesheet" type="text/css" href="src/style.css" />
+  <script type="module" src="/src/life-counter.ts"></script>
 </head>
 
-<body>
-  <div id="app"></div>
-  <script type="module" src="/src/main.ts"></script>
+<body class="bg-black">
+  <div class="grid grid-cols-1 grid-rows-1 h-screen">
+    <mtg-life-counter></mtg-life-counter>
+  </div>
 </body>
 
 </html>
