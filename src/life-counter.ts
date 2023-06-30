@@ -12,35 +12,40 @@ const templateElement = document.createElement("template");
 templateElement.innerHTML = template.trim();
 
 export default class LifeCounter extends HTMLElement {
-  value: number;
-  valueElement: HTMLParagraphElement;
+  #value: number;
+  #valueElement: HTMLParagraphElement;
 
   constructor() {
     super();
 
     this.appendChild(templateElement.content.cloneNode(true));
-    this.value = 20;
+    this.#value = 20;
 
     const plusButton = this.querySelector("#button-plus") as HTMLButtonElement;
 
     const minusButton = this.querySelector("#button-minus") as HTMLButtonElement;
-    this.valueElement = this.querySelector<HTMLParagraphElement>("#value") as HTMLParagraphElement;
+    this.#valueElement = this.querySelector<HTMLParagraphElement>("#value") as HTMLParagraphElement;
 
     plusButton.addEventListener("click", () => this.#plus());
     minusButton.addEventListener("click", () => this.#minus());
   }
 
   #updateValue() {
-    this.valueElement.innerText = this.value.toString();
+    this.#valueElement.innerText = this.#value.toString();
   }
 
   #plus() {
-    this.value++;
+    this.#value++;
     this.#updateValue();
   }
 
   #minus() {
-    this.value--;
+    this.#value--;
+    this.#updateValue();
+  }
+
+  reset() {
+    this.#value = 20;
     this.#updateValue();
   }
 }

@@ -8,12 +8,14 @@
   <title>MTG - Life Counter</title>
   <link rel="stylesheet" type="text/css" href="src/style.css" />
   <script type="module" src="/src/life-counter.ts"></script>
+  <script type="module" src="/src/reset-button.ts"></script>
 </head>
 
-<body class="bg-black">
-  <div class="grid grid-cols-1 grid-rows-1 h-screen">
+<body class="bg-black h-[100dvh]">
+  <div class="grid grid-cols-1 grid-rows-1 h-full">
     <mtg-life-counter></mtg-life-counter>
   </div>
+  <mtg-reset-button></mtg-reset-button>
 </body>
 
 </html>
