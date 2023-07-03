@@ -1,8 +1,7 @@
 import { html } from "./html";
-import LifeCounter from "./life-counter";
 
 const template = html`
-  <button class="absolute bottom-4 right-4 bg-black w-12 h-12 rounded-full flex items-center justify-center">
+  <button class="bg-black w-12 h-12 rounded-full flex items-center justify-center">
     <svg xmlns="http://www.w3.org/2000/svg" height="32" viewBox="0 -960 960 960" width="32">
       <path
         fill="white"
@@ -23,11 +22,6 @@ export default class ResetButton extends HTMLElement {
 
     const buttonElement = this.querySelector("button");
     buttonElement?.addEventListener("click", () => {
-      const lifeCounters = document.querySelectorAll<LifeCounter>("mtg-life-counter");
-      lifeCounters.forEach((lifecounter) => {
-        lifecounter.reset();
-      });
-
       buttonElement.classList.add("animate-spin-once");
       setTimeout(() => {
         buttonElement.classList.remove("animate-spin-once");
