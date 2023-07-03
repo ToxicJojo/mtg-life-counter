@@ -7,15 +7,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>MTG - Life Counter</title>
   <link rel="stylesheet" type="text/css" href="src/style.css" />
+  <script type="module" src="/src/main.ts"></script>
   <script type="module" src="/src/life-counter.ts"></script>
   <script type="module" src="/src/reset-button.ts"></script>
+  <script type="module" src="/src/settings-button.ts"></script>
+  <script type="module" src="/src/settings-screen.ts"></script>
 </head>
 
 <body class="bg-black h-[100dvh]">
-  <div class="grid grid-cols-1 grid-rows-1 h-full">
-    <mtg-life-counter></mtg-life-counter>
+  <div id="counter-wrapper" class="grid grid-cols-1 grid-rows-1 gap-2 h-full">
+    <mtg-life-counter color="sky"></mtg-life-counter>
   </div>
-  <mtg-reset-button></mtg-reset-button>
+  <div class="absolute flex gap-4 bottom-4 right-4 z-20">
+    <mtg-reset-button></mtg-reset-button>
+    <mtg-settings-button></mtg-settings-button>
+  </div>
+  <mtg-settings-screen class="hidden"></mtg-settings-screen>
 </body>
 
 </html>
