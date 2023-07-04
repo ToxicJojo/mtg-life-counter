@@ -3,7 +3,7 @@ import { html } from "./html";
 const template = html`
   <section id="container" class="flex flex-col justify-center items-center relative h-full rounded-2xl">
     <button id="button-plus" class="w-full h-full flex-1 z-10"></button>
-    <p id="value" class="absolute text-9xl font-bold ">20</p>
+    <p id="value" class="absolute text-9xl font-bold "></p>
     <button id="button-minus" class="w-full h-full flex-1 z-10"></button>
   </section>
 `;
@@ -17,7 +17,7 @@ export default class LifeCounter extends HTMLElement {
   #containerElement: HTMLElement;
 
   static get observedAttributes() {
-    return ["orientation", "color"];
+    return ["orientation", "color", "starting-life"];
   }
 
   constructor() {
@@ -25,7 +25,7 @@ export default class LifeCounter extends HTMLElement {
 
     this.appendChild(templateElement.content.cloneNode(true));
 
-    this.#value = 20;
+    this.#value = 0;
     this.#containerElement = this.querySelector("#container") as HTMLElement;
     this.#valueElement = this.querySelector<HTMLParagraphElement>("#value") as HTMLParagraphElement;
   }
@@ -36,6 +36,8 @@ export default class LifeCounter extends HTMLElement {
 
     plusButton.addEventListener("click", () => this.#plus());
     minusButton.addEventListener("click", () => this.#minus());
+    this.#value = this.startingLife;
+    this.#updateValue();
   }
 
   #updateValue() {
@@ -75,6 +77,14 @@ export default class LifeCounter extends HTMLElement {
     this.updateRender();
   }
 
+  get startingLife() {
+    return Number(this.getAttribute("starting-life"));
+  }
+
+  set startingLife(newStartingLife) {
+    this.setAttribute("starting-life", newStartingLife.toString());
+  }
+
   updateRender() {
     this.#containerElement.className = "flex relative justify-center items-center h-full rounded-2xl animate-grow-once";
     if (this.orientation === "north") {
@@ -107,7 +117,7 @@ export default class LifeCounter extends HTMLElement {
   }
 
   reset() {
-    this.#value = 20;
+    this.#value = this.startingLife;
     this.#updateValue();
   }
 }
