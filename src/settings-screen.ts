@@ -6,22 +6,16 @@ const template = html`
       <h1 class="text-3xl text-center">Settings</h1>
       <fieldset class="flex flex-wrap gap-4">
         <legend class="flex mb-2">Player Count</legend>
-        <label class="flex cursor-pointer">
-          <input type="radio" name="player-count" value="1" class="hidden peer" checked />
-          <span class="text-lg bg-white rounded-full py-1 px-6 peer-checked:bg-black peer-checked:text-white">1</span>
-        </label>
-        <label class="flex cursor-pointer">
-          <input type="radio" name="player-count" value="2" class="hidden peer" />
-          <span class="text-lg bg-white rounded-full py-1 px-6 peer-checked:bg-black peer-checked:text-white">2</span>
-        </label>
-        <label class="flex cursor-pointer">
-          <input type="radio" name="player-count" value="3" class="hidden peer" />
-          <span class="text-lg bg-white rounded-full py-1 px-6 peer-checked:bg-black peer-checked:text-white">3</span>
-        </label>
-        <label class="flex cursor-pointer">
-          <input type="radio" name="player-count" value="4" class="hidden peer" />
-          <span class="text-lg bg-white rounded-full py-1 px-6 peer-checked:bg-black peer-checked:text-white">4</span>
-        </label>
+        <settings-option name="player-count" value="1" label="1" checked></settings-option>
+        <settings-option name="player-count" value="2" label="2"></settings-option>
+        <settings-option name="player-count" value="3" label="3"></settings-option>
+        <settings-option name="player-count" value="4" label="4"></settings-option>
+      </fieldset>
+      <fieldset class="flex flex-wrap gap-4">
+        <legend class="flex mb-2">Starting Life</legend>
+        <settings-option name="starting-life" value="20" label="20" checked></settings-option>
+        <settings-option name="starting-life" value="30" label="30"></settings-option>
+        <settings-option name="starting-life" value="40" label="40"></settings-option>
       </fieldset>
       <div class="flex-1"></div>
       <button type="submit" id="button-save" class="bg-black p-4 font-bold text-white rounded-full">
@@ -46,11 +40,13 @@ export default class SettingsScreen extends HTMLElement {
 
       const formData = new FormData(settingsForm);
       const playerCount = +(formData.get("player-count") as string);
+      const startingLife = +(formData.get("starting-life") as string);
 
       this.dispatchEvent(
         new CustomEvent("save", {
           detail: {
             playerCount,
+            startingLife,
           },
         })
       );
